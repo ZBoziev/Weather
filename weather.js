@@ -9,17 +9,22 @@ const serverUrl = 'http://api.openweathermap.org/data/2.5/weather';
 const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f';
 
 button.addEventListener('click', () => {
-    const cityName = document.querySelector('.search-box').value;
+  const cityName = document.querySelector('.search-box').value;
 
-    if (cityName !== '') {
-        fetch(`${serverUrl}?q=${cityName}&units=metric&appid=${apiKey}`)
-            .then((response) => {
-                return response.json();
-            })
-            
-            .then((response) => {
-                const result = document.querySelector('.weather-main');
-                result.innerHTML = `
+  if (cityName !== '') {
+    try {
+
+      fetch(`${serverUrl}?q=${cityName}&units=metric&appid=${apiKey}`)
+    }
+    catch (err) {
+      alert('err')
+    }
+        .then((response) => {
+          return response.json();
+        })
+        .then((response) => {
+          const result = document.querySelector('.weather-main');
+          result.innerHTML = `
                     <div class="weather-info">
                       <div class="degree">${response.main.temp}&deg</div>
                       <img src=" images/icons_cloud.svg" class="cloud">
@@ -46,9 +51,9 @@ button.addEventListener('click', () => {
                       </div>
                     </div>
                `;
-            });
-           
-    }
+        });
+    
+  }
 });
 
 // function createHtmlTask() {
