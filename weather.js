@@ -12,14 +12,8 @@ button.addEventListener('click', () => {
   const cityName = document.querySelector('.search-box').value;
 
   if (cityName !== '') {
-    try {
-
-      fetch(`${serverUrl}?q=${cityName}&units=metric&appid=${apiKey}`)
-    }
-    catch (err) {
-      alert('err')
-    }
-        .then((response) => {
+       fetch(`${serverUrl}?q=${cityName}&units=metric&appid=${apiKey}`)
+          .then((response) => {
           return response.json();
         })
         .then((response) => {
@@ -51,7 +45,7 @@ button.addEventListener('click', () => {
                       </div>
                     </div>
                `;
-        });
+        }).catch(alert);
     
   }
 });
